@@ -1,0 +1,10 @@
+C:\Users\Startklaar\Desktop\School\Software Ontwikkeling 2\BoterKaasEieren\BoterKaasEieren\bin\Release\BoterKaasEieren.exe.config
+C:\Users\Startklaar\Desktop\School\Software Ontwikkeling 2\BoterKaasEieren\BoterKaasEieren\bin\Release\BKE.accdb
+C:\Users\Startklaar\Desktop\School\Software Ontwikkeling 2\BoterKaasEieren\BoterKaasEieren\bin\Release\BoterKaasEieren.exe
+C:\Users\Startklaar\Desktop\School\Software Ontwikkeling 2\BoterKaasEieren\BoterKaasEieren\bin\Release\BoterKaasEieren.pdb
+C:\Users\Startklaar\Desktop\School\Software Ontwikkeling 2\BoterKaasEieren\BoterKaasEieren\obj\Release\BoterKaasEieren.csprojResolveAssemblyReference.cache
+C:\Users\Startklaar\Desktop\School\Software Ontwikkeling 2\BoterKaasEieren\BoterKaasEieren\obj\Release\BoterKaasEieren.Form1.resources
+C:\Users\Startklaar\Desktop\School\Software Ontwikkeling 2\BoterKaasEieren\BoterKaasEieren\obj\Release\BoterKaasEieren.Properties.Resources.resources
+C:\Users\Startklaar\Desktop\School\Software Ontwikkeling 2\BoterKaasEieren\BoterKaasEieren\obj\Release\BoterKaasEieren.csproj.GenerateResource.Cache
+C:\Users\Startklaar\Desktop\School\Software Ontwikkeling 2\BoterKaasEieren\BoterKaasEieren\obj\Release\BoterKaasEieren.exe
+C:\Users\Startklaar\Desktop\School\Software Ontwikkeling 2\BoterKaasEieren\BoterKaasEieren\obj\Release\BoterKaasEieren.pdb

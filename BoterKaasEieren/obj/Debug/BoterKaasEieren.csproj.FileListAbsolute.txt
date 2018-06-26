@@ -1,0 +1,20 @@
+C:\Users\Startklaar\Desktop\School\Software Ontwikkeling 2\BoterKaasEieren\BoterKaasEieren\bin\Debug\BoterKaasEieren.exe.config
+C:\Users\Startklaar\Desktop\School\Software Ontwikkeling 2\BoterKaasEieren\BoterKaasEieren\bin\Debug\BoterKaasEieren.exe
+C:\Users\Startklaar\Desktop\School\Software Ontwikkeling 2\BoterKaasEieren\BoterKaasEieren\bin\Debug\BoterKaasEieren.pdb
+C:\Users\Startklaar\Desktop\School\Software Ontwikkeling 2\BoterKaasEieren\BoterKaasEieren\obj\Debug\BoterKaasEieren.csprojResolveAssemblyReference.cache
+C:\Users\Startklaar\Desktop\School\Software Ontwikkeling 2\BoterKaasEieren\BoterKaasEieren\obj\Debug\BoterKaasEieren.Form1.resources
+C:\Users\Startklaar\Desktop\School\Software Ontwikkeling 2\BoterKaasEieren\BoterKaasEieren\obj\Debug\BoterKaasEieren.Properties.Resources.resources
+C:\Users\Startklaar\Desktop\School\Software Ontwikkeling 2\BoterKaasEieren\BoterKaasEieren\obj\Debug\BoterKaasEieren.csproj.GenerateResource.Cache
+C:\Users\Startklaar\Desktop\School\Software Ontwikkeling 2\BoterKaasEieren\BoterKaasEieren\obj\Debug\BoterKaasEieren.exe
+C:\Users\Startklaar\Desktop\School\Software Ontwikkeling 2\BoterKaasEieren\BoterKaasEieren\obj\Debug\BoterKaasEieren.pdb
+D:\programming_Projects\BoterKaasEieren\BoterKaasEieren\bin\Debug\BoterKaasEieren.exe.config
+D:\programming_Projects\BoterKaasEieren\BoterKaasEieren\obj\Debug\BoterKaasEieren.exe
+D:\programming_Projects\BoterKaasEieren\BoterKaasEieren\obj\Debug\BoterKaasEieren.pdb
+D:\programming_Projects\BoterKaasEieren\BoterKaasEieren\bin\Debug\BoterKaasEieren.exe
+D:\programming_Projects\BoterKaasEieren\BoterKaasEieren\bin\Debug\BoterKaasEieren.pdb
+D:\programming_Projects\BoterKaasEieren\BoterKaasEieren\obj\Debug\BoterKaasEieren.csprojResolveAssemblyReference.cache
+D:\programming_Projects\BoterKaasEieren\BoterKaasEieren\obj\Debug\BoterKaasEieren.Form1.resources
+D:\programming_Projects\BoterKaasEieren\BoterKaasEieren\obj\Debug\BoterKaasEieren.Properties.Resources.resources
+D:\programming_Projects\BoterKaasEieren\BoterKaasEieren\obj\Debug\BoterKaasEieren.csproj.GenerateResource.Cache
+D:\programming_Projects\BoterKaasEieren\BoterKaasEieren\bin\Debug\BKE.accdb
+C:\Users\Startklaar\Desktop\School\Software Ontwikkeling 2\BoterKaasEieren\BoterKaasEieren\bin\Debug\BKE.accdb
