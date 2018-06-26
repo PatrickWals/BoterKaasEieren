@@ -36,7 +36,6 @@ namespace BoterKaasEieren
             PictureBox pb = sender as PictureBox;
 
 
-            
             if (pb.Tag.ToString() == "E") // a turn is only Valid when the Tag of a PictureBox is empty
             {
                 
