@@ -249,7 +249,46 @@ namespace BoterKaasEieren
             }
 
         }
-    
+
+        private void getGamestate()
+        {
+
+
+
+
+
+        }
+
+        private void setField(string status, int P1, int P2)
+        {
+            string query = "SELECT gamestatus FROM BKE WHERE gameID = (SELECT MAX(gameID) FROM BKE);";
+            OleDbConnection connection = new OleDbConnection();
+
+            connection.ConnectionString = connectionString;
+
+            try
+            {
+                connection.Open();
+
+                OleDbCommand command = new OleDbCommand(query, connection);
+                OleDbDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
         private void loadSnapshot()
         {
 
@@ -257,25 +296,7 @@ namespace BoterKaasEieren
 
         }
 
-        private void setField(string status, int P1, int P2)
-        {
-            int counter = 0;
-            scoreArray[0] = P1;
-            scoreArray[1] = P2;
 
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    Console.Write("I"+i +"J"+ j+" ");
-                }
-                Console.WriteLine();
-                 
-            }
-
-            
-
-        }
 
         private string getStatus()
         {
