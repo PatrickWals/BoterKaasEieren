@@ -249,46 +249,7 @@ namespace BoterKaasEieren
             }
 
         }
-
-        private string getGamestate()
-        {
-            string gamestate;
-
-            gamestate = "";
-
-
-
-            string query = "SELECT gamestatus FROM BKE WHERE gameID = (SELECT MAX(gameID) FROM BKE);";
-            OleDbConnection connection = new OleDbConnection();
-
-            connection.ConnectionString = connectionString;
-            
-            try
-            {
-                connection.Open();
-                OleDbCommand cmd = new OleDbCommand(query, connection);
-                OleDbDataReader reader = cmd.ExecuteReader();
-                
-                reader.Read();
-                gamestate = reader.GetString(reader.GetOrdinal("gamestatus"));
-                reader.Close();
-          
-                Console.WriteLine(gamestate);
-            }
-
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
-
-            return gamestate;
-
-        }
-
+    
         private void loadSnapshot()
         {
 
