@@ -32,5 +32,15 @@ namespace BoterKaasEieren.Properties {
                 return ((string)(this["BKEConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\Databae_BKE.mdb")]
+        public string Databae_BKEConnectionString {
+            get {
+                return ((string)(this["Databae_BKEConnectionString"]));
+            }
+        }
     }
 }

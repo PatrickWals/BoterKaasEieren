@@ -17,7 +17,7 @@ namespace BoterKaasEieren
         int[] scoreArray = new int[2] {0,0};
         FlowLayoutPanel flp1;
         PictureBox[,] Field = new PictureBox[3, 3];
-        string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=BKE.accdb";
+        string connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\Databae_BKE.mdb";
 
 
         public Form1()
@@ -28,17 +28,15 @@ namespace BoterKaasEieren
         private void Form1_Load(object sender, EventArgs e)
         {
             createField();
-            setField("XOXEEEOXO", 5, 4);
+            MessageBox.Show("S = Savegame    L = loadgame");
         }
 
         private void Field_Click(object sender, EventArgs e)
         {
             PictureBox pb = sender as PictureBox;
 
-
             if (pb.Tag.ToString() == "E") // a turn is only Valid when the Tag of a PictureBox is empty
             {
-                
                 Console.WriteLine("ClicK");
                 if (player1)
                 {
@@ -56,17 +54,7 @@ namespace BoterKaasEieren
                 }
 
                 checkDraw();
-                saveSnapshot();
-                loadSnapshot();
-
             }
-            
-            //Used for Testing purposes
-            //foreach (var item in Field)
-            //{
-            //    Console.Write(item.Tag);
-            //}
-            //Console.WriteLine();
         }
 
         private void createField()
@@ -93,7 +81,7 @@ namespace BoterKaasEieren
 
                     flp1.Controls.Add(Field[i, j]);// this code adds the Picturebox to the flowlayoutPanel
                 }
-                Console.WriteLine("");
+                Console.WriteLine();
             }
         }
 
@@ -220,64 +208,39 @@ namespace BoterKaasEieren
 
         private void saveSnapshot()
         {
-            string status = getStatus();
-
-
             OleDbConnection connection = new OleDbConnection(connectionString);
+            string Query = "UPDATE BKE SET "+
+                "A1 = @A1, " +
+                "A2 = @A2, " +
+                "A3 = @A3, " +
+                "B1 = @B1, " +
+                "B2 = @B2, " +
+                "B3 = @B3, " +
+                "C1 = @C1, " +
+                "C2 = @C2, " +
+                "C3 = @C3" ;
+
             try
             {
                 connection.Open();
-                OleDbCommand cmd = connection.CreateCommand();
+                OleDbCommand cmd = new OleDbCommand(Query, connection);
 
-                cmd.Parameters.Add(new OleDbParameter("@status", status));
-                cmd.Parameters.Add(new OleDbParameter("@scoreP1", scoreArray[0]));
-                cmd.Parameters.Add(new OleDbParameter("@status", scoreArray[1]));
+                cmd.Parameters.Add(new OleDbParameter("@A1", Field[0, 0].Tag.ToString()));
+                cmd.Parameters.Add(new OleDbParameter("@A2", Field[0, 1].Tag.ToString()));
+                cmd.Parameters.Add(new OleDbParameter("@A3", Field[0, 2].Tag.ToString()));
 
-                cmd.CommandText = "INSERT INTO BKE (gameID, gamestatus, scoreP1, scoreP2 )" +
-                               "VALUES (1, @status, @scoreP1, @scoreP2 );";
+                cmd.Parameters.Add(new OleDbParameter("@B1", Field[1, 0].Tag.ToString()));
+                cmd.Parameters.Add(new OleDbParameter("@B2", Field[1, 1].Tag.ToString()));
+                cmd.Parameters.Add(new OleDbParameter("@B3", Field[1, 2].Tag.ToString()));
+
+                cmd.Parameters.Add(new OleDbParameter("@C1", Field[2, 0].Tag.ToString()));
+                cmd.Parameters.Add(new OleDbParameter("@C2", Field[2, 1].Tag.ToString()));
+                cmd.Parameters.Add(new OleDbParameter("@C3", Field[2, 2].Tag.ToString()));
 
                 cmd.ExecuteNonQuery();
-                cmd.Parameters.Clear();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
-
-        }
-
-        private void getGamestate()
-        {
-
-
-
-
-
-        }
-
-        private void setField(string status, int P1, int P2)
-        {
-            string query = "";
-            OleDbConnection connection = new OleDbConnection();
-
-            connection.ConnectionString = connectionString;
-
-            try
-            {
-                connection.Open();
-
-                OleDbCommand command = new OleDbCommand(query, connection);
-                OleDbDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
                 {
-
+                    Console.WriteLine("Game Saved!");
                 }
-                reader.Close();
             }
             catch (Exception ex)
             {
@@ -291,22 +254,79 @@ namespace BoterKaasEieren
 
         private void loadSnapshot()
         {
+            setField();
+            setFieldColor();
+        }
 
-            Console.WriteLine(getGamestate());
+        private void setField()
+        {
+            string query = "SELECT * FROM BKE";
+            OleDbConnection connection = new OleDbConnection(connectionString);
+
+            try
+            {
+                connection.Open();
+
+                OleDbCommand command = new OleDbCommand(query, connection);
+                OleDbDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Field[0, 0].Tag = reader[0].ToString();
+                    Field[0, 1].Tag = reader[1].ToString();
+                    Field[0, 2].Tag = reader[2].ToString();
+
+                    Field[1, 0].Tag = reader[3].ToString();
+                    Field[1, 1].Tag = reader[4].ToString();
+                    Field[1, 2].Tag = reader[5].ToString();
+
+                    Field[2, 0].Tag = reader[6].ToString();
+                    Field[2, 1].Tag = reader[7].ToString();
+                    Field[2, 2].Tag = reader[8].ToString();
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Game Loaded");
+                connection.Close();
+            }
+
 
         }
 
-
-
-        private string getStatus()
+        private void setFieldColor()
         {
-            string status = "";
-            foreach (var item in Field)
+            for (int i = 0; i < 3; i++)
             {
-                status += item.Tag;
+                for (int j = 0; j < 3; j++)
+                {
+                    if (Field[i,j].Tag.ToString() == "X")
+                    {
+                        Field[i,j].BackColor = Color.Red;
+                    }
+                    if (Field[i, j].Tag.ToString() == "O")
+                    {
+                        Field[i,j].BackColor = Color.Green;
+                    }
+                }
             }
-            //Console.WriteLine(status);
-            return status;  
+        }
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar.ToString().ToLower()== "s")
+            {
+                saveSnapshot();
+            }
+            if (e.KeyChar.ToString().ToLower() == "l")
+            {
+                loadSnapshot();
+            }
         }
     }
 }
