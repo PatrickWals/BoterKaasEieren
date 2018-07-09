@@ -13,7 +13,7 @@ namespace BoterKaasEieren
 {
     public partial class Form1 : Form
     {
-        bool player1 = true; // variable used to define which player's turn it is
+        string playerTurn = "P1"; // variable used to define which player's turn it is P1 = player1, AI = Computer/Player 2
         int[] scoreArray = new int[2] {0,0};
         FlowLayoutPanel flp1;
         PictureBox[,] Field = new PictureBox[3, 3];
@@ -38,18 +38,18 @@ namespace BoterKaasEieren
             if (pb.Tag.ToString() == "E") // a turn is only Valid when the Tag of a PictureBox is empty
             {
                 Console.WriteLine("ClicK");
-                if (player1)
+                if (playerTurn =="P1")
                 {
                     pb.BackColor = Color.Red;
                     pb.Tag = "X";// set the tag to X
-                    player1 = false;// end of player 1's turn
+                    playerTurn = "AI";// end of player 1's turn
                     checkWinner("X");//this checks if player X has won 
                 }
-                else
+                if(playerTurn == "AI" && pb.Tag.ToString()== "E")
                 {
                     pb.BackColor = Color.Green;
                     pb.Tag = "O";// set the tag to O
-                    player1 = true;// end of player 2's turn
+                    playerTurn = "P1";// end of player 2's turn
                     checkWinner("O");//this checks if player O has won                  
                 }
 
@@ -147,7 +147,9 @@ namespace BoterKaasEieren
             if (ltr == "X")
             {
                 scoreArray[0] += 1;
-            } else {
+            }
+            if (ltr == "O")
+            {
                 scoreArray[1] += 1;
             }
 
@@ -195,7 +197,7 @@ namespace BoterKaasEieren
 
         private void resetField()
         {
-            player1 = true;
+            playerTurn = "P1";
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
@@ -218,7 +220,8 @@ namespace BoterKaasEieren
                 "B3 = @B3, " +
                 "C1 = @C1, " +
                 "C2 = @C2, " +
-                "C3 = @C3" ;
+                "C3 = @C3, " +
+                "Turn = @Turn";
 
             try
             {
@@ -237,19 +240,51 @@ namespace BoterKaasEieren
                 cmd.Parameters.Add(new OleDbParameter("@C2", Field[2, 1].Tag.ToString()));
                 cmd.Parameters.Add(new OleDbParameter("@C3", Field[2, 2].Tag.ToString()));
 
+                cmd.Parameters.Add(new OleDbParameter("@Turn", playerTurn.ToString()));
+
+
                 cmd.ExecuteNonQuery();
                 {
                     Console.WriteLine("Game Saved!");
+                    MessageBox.Show("Game Saved!");
                 }
+
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("Speler" + ex.Message);
             }
             finally
             {
                 connection.Close();
             }
+
+            try
+            {
+                Query = "UPDATE Spelers SET " +
+                "PLAYER1 = @P1, " +
+                "AI = @AI";
+
+                OleDbCommand cmd = new OleDbCommand(Query, connection);
+                connection.Open();
+                    cmd.Parameters.Add(new OleDbParameter("@P1", scoreArray[0]));
+                    cmd.Parameters.Add(new OleDbParameter("@AI", scoreArray[1]));
+
+                cmd.ExecuteNonQuery();
+                {
+                    Console.WriteLine("Score Saved!");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Score" + ex.Message); 
+            }
+            finally
+            {
+                connection.Close();
+            }
+
         }
 
         private void loadSnapshot()
@@ -293,6 +328,7 @@ namespace BoterKaasEieren
             finally
             {
                 Console.WriteLine("Game Loaded");
+                MessageBox.Show("Game Loaded!");
                 connection.Close();
             }
 
